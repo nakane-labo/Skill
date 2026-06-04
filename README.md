@@ -1,13 +1,13 @@
-# Skill（Cursor スキル集）
+# Skill（配布用エージェントスキル集）
 
-[nakane-labo](https://github.com/nakane-labo) 配布用の Cursor スキルをまとめたリポジトリです。
+[nakane-labo](https://github.com/nakane-labo) から配布する AI エージェント用スキルをまとめたリポジトリです。
 
 ## 収録スキル
 
-| フォルダ | 用途 |
-|----------|------|
-| [`academic-research-skills-nakanelabo/`](academic-research-skills-nakanelabo/) | 研究〜論文執筆・査読の学術スキルバンドル（中根ラボ版） |
-| [`ronbun-kodoku-prep/`](ronbun-kodoku-prep/) | ゼミ論文購読（輪読・抄読）の対話型準備ガイド |
+| フォルダ | 対象 | 用途 |
+|----------|------|------|
+| [`academic-research-skills-nakanelabo/`](academic-research-skills-nakanelabo/) | **Claude Code / Cursor** | 研究〜論文執筆・査読の学術スキルバンドル（中根ラボ版） |
+| [`ronbun-kodoku-prep/`](ronbun-kodoku-prep/) | **Claude Code のみ** | ゼミ論文購読（輪読・抄読）の対話型準備ガイド |
 
 ## ダウンロード
 
@@ -15,18 +15,27 @@
 
 https://github.com/nakane-labo/Skill/archive/refs/heads/main.zip
 
-解凍後、使うスキルのフォルダ（例: `Skill-main/ronbun-kodoku-prep/`）だけを `.cursor/skills/` にコピーしてください。
+解凍後、使うスキルのフォルダだけを、下記の **対象ツールに応じた** スキル配置先にコピーしてください。
 
-## Cursor へのインストール（共通）
+## インストール先（スキルごと）
 
-1. 上記 ZIP を取得して解凍する  
-2. 必要なスキルフォルダを次のいずれかへコピーする  
-   - **プロジェクト用**: `プロジェクト/.cursor/skills/`  
-   - **全プロジェクト共通**: `~/.cursor/skills/`  
-3. 例: `.cursor/skills/ronbun-kodoku-prep/SKILL.md` が存在することを確認  
-4. Cursor を再起動するか、新しいチャットを開く  
+### academic-research-skills-nakanelabo
 
-各スキルの詳細は、フォルダ内の `README.md` または `概要.md` を参照してください。
+| ツール | 配置先 |
+|--------|--------|
+| Claude Code | `.claude/skills/academic-research-skills-nakanelabo/` または `~/.claude/skills/` |
+| Cursor | `.cursor/skills/academic-research-skills-nakanelabo/` または `~/.cursor/skills/` |
+
+詳細は [`academic-research-skills-nakanelabo/README.md`](academic-research-skills-nakanelabo/README.md) および [`概要.md`](academic-research-skills-nakanelabo/概要.md) を参照。
+
+### ronbun-kodoku-prep（Claude Code 専用）
+
+| ツール | 配置先 |
+|--------|--------|
+| Claude Code | `.claude/skills/ronbun-kodoku-prep/` または `~/.claude/skills/ronbun-kodoku-prep/` |
+| Cursor | **非対応**（本スキルは Claude Code 向けに設計） |
+
+詳細は [`ronbun-kodoku-prep/README.md`](ronbun-kodoku-prep/README.md) を参照。
 
 ## 旧リポジトリについて
 

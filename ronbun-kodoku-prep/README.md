@@ -1,6 +1,8 @@
-# 論文購読プレップ（Cursor スキル）
+# 論文購読プレップ（Claude Code スキル）
 
-ゼミの論文購読（輪読・抄読会）の事前準備を、対話型クイズと発表スライド作成までガイドする Cursor 用スキルです。
+ゼミの論文購読（輪読・抄読会）の事前準備を、対話型クイズと発表スライド作成までガイドする **Claude Code 向け**スキルです。
+
+> **Cursor 用ではありません。** インストール先は `.claude/skills/` です。
 
 ## ダウンロード
 
@@ -13,18 +15,20 @@ ZIP の直接リンク（リポジトリ全体・main ブランチ）:
 
 https://github.com/nakane-labo/Skill/archive/refs/heads/main.zip
 
-## Cursor へのインストール
+## Claude Code へのインストール
 
 1. ZIP を解凍する  
 2. フォルダ `ronbun-kodoku-prep` を、次のいずれかにコピーする  
-   - **プロジェクト用**（そのゼミ・研究フォルダだけ）: プロジェクト直下の `.cursor/skills/`  
-   - **全プロジェクト共通**: `~/.cursor/skills/`（Mac の場合はホームフォルダ内の `.cursor/skills/`）
-3. パス例: `.cursor/skills/ronbun-kodoku-prep/SKILL.md` が存在することを確認する  
-4. Cursor を再起動するか、新しいチャットを開く  
+   - **プロジェクト用**（そのゼミ・研究フォルダだけ）: プロジェクト直下の `.claude/skills/`  
+   - **全プロジェクト共通**: `~/.claude/skills/`（Mac はホームの `.claude/skills/`）
+3. パス例: `.claude/skills/ronbun-kodoku-prep/SKILL.md` が存在することを確認する  
+4. **新しい Claude Code セッション**を開く（初回で `.claude/skills/` を作った場合は再起動が必要なことがあります）
+
+参考: [Claude Code — Extend Claude with skills](https://code.claude.com/docs/en/skills)
 
 ## 使い方
 
-Cursor のチャットで論文 PDF を添付し、例えば次のように依頼してください。
+Claude Code で論文 PDF を渡し、例えば次のように依頼してください。
 
 - 「この論文の購読の準備をしたい」
 - 「輪読会の発表準備を手伝って」
