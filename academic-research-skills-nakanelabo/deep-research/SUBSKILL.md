@@ -1,10 +1,10 @@
 ---
 name: deep-research
 description: >-
-  Universal deep research agent team. 13-agent pipeline for rigorous academic research on any topic. 7 modes: full research, quick brief, paper review, lit-review, fact-check, Socratic guided research dialogue, and systematic review with optional meta-analysis. Covers research question formulation, Socratic mentoring, methodology design, systematic literature search, source verification, cross-source synthesis, risk of bias assessment, meta-analysis, report compilation with Japan Sociological Society *Shakai Gakkyo Ron* (社会学評論) Style Guide references (DOI for journal articles, ISBN for books), editorial review, devil's advocate challenges, ethics review, and post-research literature monitoring. Triggers on: research, deep research, literature review, systematic review, meta-analysis, PRISMA, evidence synthesis, fact-check, guide my research, help me think through, 研究, 研究計画, 研究方向, 研究主題. Japanese: 学術調査、文献レビュー、システマティックレビュー、社会学評論スタイルガイド、DOI、ISBN、研究計画、研究課題の整理、ファクトチェック、メタアナリシス、研究の手引き、先行研究調査、研究倫理。
+  Universal deep research agent team. 13-agent pipeline for rigorous academic research on any topic. 8 modes: full research, quick brief, paper review, lit-review, fact-check, three-way literature scan, Socratic guided research dialogue, and systematic review with optional meta-analysis. Covers research question formulation, Socratic mentoring, methodology design, systematic literature search, source verification, cross-source synthesis, risk of bias assessment, meta-analysis, report compilation with Japan Sociological Society *Shakai Gakkyo Ron* (社会学評論) Style Guide references (DOI for journal articles, ISBN for books), editorial review, devil's advocate challenges, ethics review, and post-research literature monitoring. Triggers on: research, deep research, literature review, systematic review, meta-analysis, PRISMA, evidence synthesis, fact-check, WHY HOW WHAT papers, 3W literature scan, guide my research, help me think through, 研究, 研究計画, 研究方向, 研究主題. Japanese: 学術調査、文献レビュー、システマティックレビュー、社会学評論スタイルガイド、DOI、ISBN、研究計画、研究課題の整理、ファクトチェック、メタアナリシス、3W文献スキャン、研究の手引き、先行研究調査、研究倫理。
 metadata:
-  version: "2.9.3"
-  last_updated: "2026-04-30"
+  version: "2.11.0"
+  last_updated: "2026-06-18"
   status: active
   data_access_level: raw
   task_type: open-ended
@@ -15,7 +15,7 @@ metadata:
 
 # Deep Research — Universal Academic Research Agent Team
 
-**Skill version 2.9.3 · 2026-04-30**（Cursor 用スキル）
+**Skill version 2.11.0 · 2026-07-03**（Cursor 用スキル）
 
 Universal deep research tool — a domain-agnostic 13-agent team for rigorous academic research on any topic.
 
@@ -24,6 +24,8 @@ Universal deep research tool — a domain-agnostic 13-agent team for rigorous ac
 **v2.4** (retained) writing quality for the report compiler:
 - **Style Profile consumption** (optional) — If a Style Profile is available from academic-paper intake, the report compiler applies it as a soft guide for the Executive Summary and Synthesis sections. Discipline conventions and report objectivity take priority.
 - **Writing Quality Check** — The report compiler runs a writing quality checklist before finalizing: flags AI-typical overused terms, checks sentence/paragraph length variation, removes throat-clearing openers. See `academic-paper/references/writing_quality_check.md`.
+
+> **Routing discipline (v3.9.2):** see `shared/references/intent_clarification_protocol.md` for cross-skill routing rules. This skill assumes routing has already settled — ambiguous cross-phase materials should have been clarified upstream.
 
 ## 日本語ガイド（運用概要）
 
@@ -38,6 +40,7 @@ Universal deep research tool — a domain-agnostic 13-agent team for rigorous ac
 | `quick` | 短時間の要約・ブリーフが欲しいとき | fidelity |
 | `review` | 引用前に既存論文を評価したいとき | balanced |
 | `lit-review` | トピックの文献レビューに特化したいとき | fidelity |
+| `three-way-scan` | 複数論文を WHY/HOW/WHAT の枠で素早く比較したいとき | fidelity |
 | `fact-check` | 特定の主張・事実の検証に特化したいとき | fidelity |
 | `systematic-review` | PRISMA 等に沿ったシステマティックレビュー／メタアナリシス | fidelity |
 
@@ -97,6 +100,8 @@ Devil's Advocate は複数フェーズで必須チェックポイントを担当
 
 ---
 
+---
+
 ## Quick Start
 
 **Minimal command:**
@@ -123,9 +128,9 @@ Guide my research on the impact of declining birth rates on private universities
 
 ### Trigger Keywords
 
-**English**: research, deep research, literature review, systematic review, meta-analysis, PRISMA, evidence synthesis, fact-check, methodology, JSS style references, sociology style guide, DOI, ISBN, academic analysis, policy analysis, guide my research, help me think through, monitor this topic, set up alerts
+**English**: research, deep research, literature review, systematic review, meta-analysis, PRISMA, evidence synthesis, fact-check, methodology, WHY HOW WHAT papers, 3W literature scan, JSS style references, sociology style guide, DOI, ISBN, academic analysis, policy analysis, guide my research, help me think through, monitor this topic, set up alerts
 
-**日本語**: 学術調査, 文献レビュー, システマティックレビュー, メタアナリシス, エビデンス統合, ファクトチェック, 研究方法, アカデミック分析, 政策分析, 研究をガイドする, 考えを整理したい, このトピックを監視, アラートを設定
+**日本語**: 学術調査, 文献レビュー, システマティックレビュー, メタアナリシス, エビデンス統合, ファクトチェック, 3W文献スキャン, 研究方法, アカデミック分析, 政策分析, 研究をガイドする, 考えを整理したい, このトピックを監視, アラートを設定
 
 ### Socratic Mode Activation
 
@@ -160,6 +165,7 @@ Activate `socratic` mode when the user's **intent** matches any of the following
 | Need a quick brief (30 min) | `quick` | fidelity |
 | Have a paper to evaluate before citing | `review` | balanced |
 | Need literature review for a topic | `lit-review` | fidelity |
+| Need a fast paper-comparison scan | `three-way-scan` | fidelity |
 | Need to verify specific claims | `fact-check` | fidelity |
 | Need systematic review / meta-analysis | `systematic-review` | fidelity |
 
@@ -202,7 +208,9 @@ User Input
     |   |           +-- No --> Need a full report?
     |   |                      +-- Yes --> full mode
     |   |                      +-- No --> Only need literature?
-    |   |                                 +-- Yes --> lit-review mode
+    |   |                                 +-- Yes --> Need rapid paper comparison?
+    |   |                                            +-- Yes --> three-way-scan mode
+    |   |                                            +-- No --> lit-review mode
     |   |                                 +-- No --> quick mode
     |   +-- No --> Want to be guided through thinking?
     |              +-- Yes --> socratic mode
@@ -323,8 +331,24 @@ User: "Research [topic]"
 
 1. ⚠️ **IRON RULE**: **Devil's Advocate** has 3 mandatory checkpoints; **Critical-severity** issues block progression
 2. Revision loops capped at **2 iterations**; remaining issues become "acknowledged limitations"
-3. ⚠️ **IRON RULE**: **Ethics Review** can halt delivery for Critical ethics concerns
+3. ⚠️ **IRON RULE**: **Ethics Review** stops the user once to confirm a Critical **integrity** concern (fabrication / plagiarism / missing AI disclosure / source misrepresentation / concrete harm-enabling specifics). Overridable with recorded reasoning — it confirms, it does not veto. Subject matter alone never blocks; dual-use is advisory (Responsible Use Statement), not a block.
 4. User confirmation required after Phase 1 before proceeding
+
+---
+
+## Phase-by-phase Invocation Contract (v3.9.2)
+
+ARS pipeline runs in 6 phases. Two invocation modes:
+
+**Mode A — orchestrator-driven (default):** `pipeline_orchestrator_agent` (in `academic-pipeline` skill) runs all phases end-to-end with state tracking via Material Passport.
+
+**Mode B — phase-by-phase (cross-session resume):** User invokes one agent per phase across sessions for long-running projects. Common pattern via `ARS_PASSPORT_RESET=1` + `resume_from_passport=<hash>` (see `academic-pipeline/references/passport_as_reset_boundary.md`).
+
+In Mode B, **single-phase agents (Bucket A per `docs/design/2026-05-18-ars-v3.9.2-agent-phase-classification.md`) stay strictly within their assigned phase for writes**. Reads from upstream phases are allowed. Multi-phase agents (Bucket B: `devils_advocate_agent`, `report_compiler_agent`) do exactly the work specified by the caller's invocation for that phase — no extension to other phases in the same call.
+
+Routing into Mode B requires explicit user signal — `/ars-<mode>` slash command or `[direct-mode]` prefix. Ambiguous cross-phase input defaults to clarification per `.claude/CLAUDE.md` Routing Discipline + `shared/references/intent_clarification_protocol.md`.
+
+**Enforcement (v3.9.2):** prompt-level via Phase Boundary blocks on Bucket A agents + advisory verifier (`scripts/check_pipeline_integrity.py`). Deterministic PreToolUse hook + multi-phase envelope deferred to v3.10 active conductor (#134).
 
 ---
 
@@ -360,9 +384,47 @@ PRISMA 2020-compliant systematic review with optional meta-analysis. Follows 5-p
 | `quick` | RQ + Biblio + Verification + Report | Research brief | 500-1,500 |
 | `review` | Editor + Devil's Advocate + Ethics | Reviewer report on provided text | N/A |
 | `lit-review` | Biblio + Verification + Synthesis | Annotated bibliography + synthesis | 1,500-4,000 |
+| `three-way-scan` | Biblio + Verification (retrieval + WHY/HOW/WHAT extract) | Paper shortlist compared by WHY/HOW/WHAT + cross-paper synthesis | 800-2,000 |
 | `fact-check` | Source Verification only | Verification report | 300-800 |
 | `socratic` | Socratic Mentor + RQ + Devil's Advocate | Research Plan Summary (INSIGHT collection) | N/A (iterative) |
 | `systematic-review` | RQ + Architect + Biblio + Verification + RoB + Meta-Analysis + Synthesis + Report + Editor + Ethics + DA | Full PRISMA 2020 report + forest plot data + GRADE table | 5,000-15,000 |
+
+---
+
+## Three-Way Scan Mode (WHY / HOW / WHAT)
+
+Use `three-way-scan` when the user needs a disciplined shortlist of papers compared in a stable frame, but does **not** yet need a full literature review report.
+
+- **WHY**: what problem or bottleneck the paper addresses and why it matters
+- **HOW**: what strategy, method, or technical route the paper uses
+- **WHAT**: what the paper found, built, or still leaves unresolved
+
+This mode is intentionally lighter than `lit-review`. It prioritizes:
+
+1. candidate retrieval
+2. deduplication
+3. compact per-paper extraction
+4. cross-paper synthesis of shared WHY, divergent HOW, and remaining gaps
+
+Recommended per-paper output:
+
+```markdown
+## <paper title>
+Source: <provider> | Year: <year> | Link: <url>
+
+- WHY: ...
+- HOW: ...
+- WHAT: ...
+```
+
+Then add:
+
+- common `WHY`
+- divergent `HOW`
+- strongest `WHAT`
+- unresolved global gap
+
+If the user later wants a broader evidence matrix, thematic synthesis, or PRISMA-like coverage, escalate from `three-way-scan` to `lit-review` or `systematic-review`.
 
 ---
 
@@ -378,7 +440,7 @@ Key failure path summary:
 | Insufficient literature | bibliography_agent finds < 5 sources | Expand search strategy, alternative keywords |
 | Methodology mismatch | RQ type misaligned with method capability | Return to Phase 1, suggest 3 alternative methods |
 | Devil's Advocate CRITICAL | Fatal logical flaw discovered | STOP, explain the issue, require correction |
-| Ethics BLOCKED | Serious ethical issue | STOP, list issues and remediation path |
+| Ethics BLOCKED | Critical integrity issue (not subject matter) | Stop the user once to confirm; list issues + remediation path; overridable with recorded reasoning |
 | Socratic non-convergence | > 10 rounds without convergence | Suggest switching to full mode |
 | User abandons mid-process | Explicitly states they don't want to continue | Save progress, provide re-entry path |
 | Only non-English literature | English search returns empty | Switch to databases in the target language |
@@ -491,6 +553,7 @@ See `academic-pipeline/SUBSKILL.md` for the complete workflow.
 | `examples/handoff_to_paper.md` | deep-research full mode handoff to academic-paper |
 | `examples/review_mode.md` | Review mode: 3-agent review pipeline for policy recommendation text |
 | `examples/fact_check_mode.md` | Fact-check mode: source verification of HEI claims with per-claim verdicts |
+| `examples/idea_diversity_coverage_gap_advisory.md` | #257 Socratic wording-pattern + lit-review distributional-skew advisories |
 
 ---
 
@@ -517,7 +580,7 @@ Explicit prohibitions to prevent common failure modes:
 ## Quality Standards
 
 1. ⚠️ **IRON RULE**: **Every claim must have a citation** — no unsupported assertions
-2. **Evidence hierarchy** — meta-analyses > RCTs > cohort studies > case reports > expert opinion
+2. **Evidence hierarchy** — meta-analyses > RCTs > cohort studies > case reports > expert opinion (field-neutral baseline; grading is **discipline-relative** — a source meeting its own field's gold standard can reach Grade A even at a low design level. See `references/source_quality_hierarchy.md` §Grading Rubric + §Field-Specific Adjustments)
 3. **Contradiction disclosure** — if sources disagree, report both sides with evidence quality comparison
 4. **Limitation transparency** — every report must have an explicit limitations section
 5. **AI disclosure** — all reports include a statement that AI-assisted research tools were used
@@ -551,8 +614,8 @@ deep-research (systematic-review) + academic-paper -> PRISMA systematic review p
 
 | Item | Content |
 |------|---------|
-| Skill Version | 2.9.3 |
-| Last Updated | 2026-04-30 |
+| Skill Version | 2.11.0 |
+| Last Updated | 2026-06-18 |
 | Maintainer | Cheng-I Wu |
 | Dependent Skills | academic-paper v1.0+ (downstream) |
 

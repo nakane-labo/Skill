@@ -65,4 +65,4 @@ description: >-
 - 日本語概要（人間向け）: `概要.md`
 - インストール要点: `README.md`
 
-**バンドル版メモ**: v3.6.7 系（deep-research 2.9.3 / academic-paper **3.1.2** / academic-pipeline 3.6.7 / reviewer 1.9.0）。**academic_writing_advice_ja**（2026-05-17）を含む。長いパイプラインはユーザ確認のチェックポイントで分割すること。
+**バンドル版メモ**: v3.14.0 系（deep-research 2.11.0 / academic-paper **3.2.0** / academic-pipeline 3.14.0 / reviewer 1.10.0、上流 2026-07 時点）。**academic_writing_advice_ja**（2026-05-17）を含む。長いパイプラインはユーザ確認のチェックポイントで分割すること。

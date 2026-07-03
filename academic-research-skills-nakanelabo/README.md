@@ -20,7 +20,7 @@
 | `academic-pipeline/` | 全工程オーケストレーション |
 | `shared/` | スキル間の共有プロトコル・スキーマ |
 
-**バンドル版**: v3.6.7 系（academic-paper **3.1.2**、`academic_writing_advice_ja` 含む）
+**バンドル版**: v3.14.0 系（academic-paper **3.2.0**、`academic_writing_advice_ja` 含む）
 
 ## ライセンス
 

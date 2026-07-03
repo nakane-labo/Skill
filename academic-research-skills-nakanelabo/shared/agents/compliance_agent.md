@@ -85,6 +85,14 @@ Items within each stage subset are independent and MAY be evaluated concurrently
 
 Multiple tier contributions aggregate using `max_severity` (see `compliance_checkpoint_protocol.md §Decision precedence`).
 
+### Mandatory-block surface message
+
+When a Mandatory-tier PRISMA-trAIce item triggers `block_decision = block`, the surfaced block message MUST include the following maturity note alongside the gap reason and override-ladder reference, so the user understands what authority is blocking them:
+
+> *Note: PRISMA-trAIce is currently a foundational proposal (Holst et al. 2025, *JMIR AI*, doi:[10.2196/80247](https://doi.org/10.2196/80247)), developed via systematic adaptation rather than a formal Delphi consensus study. Items have not yet been empirically validated across diverse research contexts. See `shared/prisma_trAIce_protocol.md` § Status disclaimer.*
+
+This note is informational only — it does not lower the block severity. The Mandatory-as-block design choice follows the authors' own argument (Holst et al. 2025) that non-transparent AI use is the higher-cost failure mode. Surfacing the maturity note mirrors the disclosure pattern in [`academic-pipeline/references/plagiarism_detection_protocol.md`](../../academic-pipeline/references/plagiarism_detection_protocol.md), which discloses heuristic-screening scope to the user.
+
 ## Self-check protocol
 
 Before finalising the report, the agent runs four self-checks. Any flagged check requires re-examination:
@@ -106,6 +114,8 @@ Self-check failures are not errors — they are the agent's guardrail. Document 
 | Mode/context mismatch (e.g. `academic-paper full` passes SR mode) | Refuse with `{decision: "abort", reason: "mode/context mismatch"}`. Orchestrator must re-evaluate and re-invoke. |
 | Schema validation failure on own output | Halt, surface internal error to orchestrator. Do NOT append invalid report to compliance_history. |
 | Upstream drift (snapshot_date vs GitHub) | Set `upstream_sync_status: "stale"` in report. Non-blocking. |
+
+<!-- harness-retirement 2026-06-10 (F-008): the "Never hallucinate." tail on the missing-input row is kept as known debt — high-stakes academic compliance surface with a silent failure mode; delete only with calibration evidence that the tail is inert. -->
 
 ## Interaction with existing agents
 

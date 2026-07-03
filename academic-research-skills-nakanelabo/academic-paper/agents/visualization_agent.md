@@ -1,3 +1,8 @@
+---
+name: visualization_agent
+description: "Generates publication-quality figure specifications and chart descriptions for inclusion in the paper"
+---
+
 # Visualization Agent — Publication-Quality Figure Generation
 
 ## Role Definition
@@ -330,7 +335,7 @@ cb_palette <- c("#0077BB", "#33BBEE", "#009988", "#EE7733",
 
 ### Handoff Format
 
-```markdown
+````markdown
 ## Figure Package: Figure [N]
 
 ### Caption
@@ -353,7 +358,27 @@ Note. [Additional details]
 
 ### Placement Recommendation
 [Single/double column; suggested section for placement]
+
+### VLM Verification (v3.3, optional)
+- **Status**: [PASS / PASS_WITH_NOTES / NEEDS_REVIEW / SKIPPED]
+- **Iterations**: [N or N/A]
+- **Issues found**: [list or "none"]
+- **Remaining issues**: [list or "none"]
+
+### Figure/Table Trace (#261)
+Reference: `references/vlm_figure_verification.md` (Figure/Table Trace section).
+Emit one `figure_table_trace[]` entry per artifact, linking the rendered output back to its data and the claims it supports. The integrity_verification_agent's Stage 4.5 Figure/Table Caption Fidelity check (Phase C3) reads this block.
+```yaml
+figure_table_trace:
+  - artifact_id: "fig-[N]"
+    source_data: {dataset_id: "...", file: "..."}
+    transformation: {script: "...", hash: "..."}   # OR precise manual-derivation pointer (§/¶ + operation); never vague
+    caption_claim: "[the interpretive claim the caption makes; may be compound]"
+    supported_manuscript_claims:                        # claim TEXT + optional locator, NOT a bare claim id
+      - {claim: "[manuscript claim text]", locator: "[§/¶ where it is made]"}   # each must actually cite this artifact, un-overstated
+    limitations: ["[caveat]", ...]                      # empty [] → integrity gate surfaces [FIGURE-LIMITATIONS-EMPTY] advisory
 ```
+````
 
 ---
 
@@ -395,6 +420,30 @@ Step 6: Quality Check
   6.1 Run all 10 mandatory checks
   6.2 Verify no common pitfalls present
   6.3 Confirm data accuracy (plotted values match source)
+
+Step 6.5: VLM Figure Verification (Optional) — NEW v3.3
+  Reference: `references/vlm_figure_verification.md`
+  6.5.1 Check if multimodal/vision capability is available
+  6.5.2 If available AND (figure is complex OR pipeline is in final-check mode):
+    - Render the figure from generated code
+    - Send rendered image + source data to VLM with 10-point checklist
+    - If any checklist item FAILs: modify code, re-render, re-check (max 2 iterations)
+    - Attach VLM Verification section to Figure Package output
+  6.5.3 If not available or figure is simple: skip (note "VLM verification: skipped" in Figure Package)
+
+Step 6.6: Figure/Table Trace (#261)
+  Reference: `references/vlm_figure_verification.md` (Figure/Table Trace section)
+  6.6.1 For each artifact (figure, and any manuscript table you produced data for), emit a
+        figure_table_trace[] entry with: source_data (dataset_id + file), transformation
+        ({script, hash} OR a precise manual-derivation pointer — never vague), caption_claim
+        (the interpretive claim, which may be compound), supported_manuscript_claims (each must
+        actually cite this artifact), and limitations (caveats you know about the artifact).
+  6.6.2 If you do not know a limitation, leave limitations: [] — do NOT invent one. The integrity
+        gate surfaces an [FIGURE-LIMITATIONS-EMPTY] advisory; it does not auto-detect omissions.
+  6.6.3 Do not overstate: list a manuscript claim under supported_manuscript_claims only if the
+        figure's data genuinely supports it. Identify each claim by TEXT + an optional locator
+        (§/¶), not by a claim id — you may run before the draft's claim_intent_manifest exists,
+        so a bare id would dangle. Add manifest_id + claim_id only if a manifest already exists.
 
 Step 7: Package Output
   7.1 Compile Figure Package for each figure
