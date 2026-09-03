@@ -61,48 +61,23 @@ STEP 2〜4 の問いはタイプ（M/E/T/K）で差し替わります。詳細�
 - **中断と再開**：進捗メモで別日に続きから。再開時は章 PDF の再添付が必要
 - **STEP 7 の発表者確認**：理解できていない表現はスライドに載せないよう最終確認
 
-## ダウンロード
+## ダウンロード（Claude デスクトップ）
 
-このスキルだけを入れてください。カタログ全体（[`nakane-labo/Skill`](https://github.com/nakane-labo/Skill) の Code → Download ZIP）は使わないでください。3スキルが一緒に入るため、Cursor / Claude Code の GitHub インストールに失敗します。
+このスキルは **Claude デスクトップ**用です。カタログ全体（[`nakane-labo/Skill`](https://github.com/nakane-labo/Skill) の Code → Download ZIP）は使わないでください。3スキルが一緒に入るとアップロードに失敗します。
 
-### 方法A：このスキルの ZIP だけ取得する（おすすめ）
+1. [booksection-rindoku-prep.zip](https://github.com/nakane-labo/Skill/releases/latest/download/booksection-rindoku-prep.zip) をダウンロードする（**解凍しない**）
+2. Claude デスクトップで **Settings → Capabilities** の **Code execution and file creation** をオンにする
+3. **Customize → Skills** → **+** → **Create skill** → **Upload a skill** で、いまの ZIP をアップロードする
+4. 一覧のスイッチをオンにする
+5. 新しいチャットを開き、担当章の PDF を添付する
 
-1. [booksection-rindoku-prep.zip](https://github.com/nakane-labo/Skill/releases/latest/download/booksection-rindoku-prep.zip) をダウンロードする
-2. 解凍する。中の `booksection-rindoku-prep` フォルダ直下に `SKILL.md` がある
-3. そのフォルダをインストール先へコピーする
+ZIP の中は `booksection-rindoku-prep/SKILL.md` という形です。解凍して中身だけを再圧縮すると失敗します。
 
-### 方法B：Git でこのフォルダだけ取る
-
-```bash
-git clone --depth 1 --filter=blob:none --sparse https://github.com/nakane-labo/Skill.git
-cd Skill
-git sparse-checkout set booksection-rindoku-prep
-```
-
-## インストール先
-
-| ツール | 配置先 |
-|--------|--------|
-| **Claude Code**（プロジェクト用） | プロジェクト直下の `.claude/skills/booksection-rindoku-prep/` |
-| **Claude Code**（全プロジェクト共通） | `~/.claude/skills/booksection-rindoku-prep/` |
-| **Cursor**（プロジェクト用） | プロジェクト直下の `.cursor/skills/booksection-rindoku-prep/` |
-| **Cursor**（全プロジェクト共通） | `~/.cursor/skills/booksection-rindoku-prep/` |
-
-### 手順（Claude Code の例）
-
-1. 上記のいずれかの配置先に `booksection-rindoku-prep` フォルダを丸ごとコピーする
-2. 次のファイルが存在することを確認する  
-   `…/booksection-rindoku-prep/SKILL.md`
-3. **新しいセッション**を開く（初回でスキルフォルダを作った場合は再起動が必要なことがあります）
-
-参考:
-
-- [Claude Code — Extend Claude with skills](https://code.claude.com/docs/en/skills)
-- [Cursor — Agent Skills](https://cursor.com/docs/context/skills)
+公式手順: [Use skills in Claude](https://support.claude.com/en/articles/12512180-use-skills-in-claude)
 
 ## 使い方
 
-担当章の PDF をエージェントに渡し、例えば次のように依頼してください。
+担当章の PDF を Claude デスクトップに渡し、例えば次のように依頼してください。
 
 - 「第3章の輪読準備をしたい」
 - 「担当章の発表スライドを一緒に作って」

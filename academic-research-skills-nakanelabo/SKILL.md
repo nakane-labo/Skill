@@ -12,7 +12,7 @@ description: >-
 
 # academic-research-skills-nakanelabo
 
-研究から投稿までをカバーする学術スキルバンドル（中根ラボ版）。**Claude Code では本ファイル（ルート `SKILL.md`）のみがスキル定義**です。各サブフォルダの手順・エージェント定義は **`SUBSKILL.md`**（`agents/`・`references/` と併読）。人間向けの全体像は `概要.md` を参照。
+研究から投稿までをカバーする学術スキルバンドル（中根ラボ版）。**Claude デスクトップでは本ファイル（ルート `SKILL.md`）のみがスキル定義**です。各サブフォルダの手順・エージェント定義は **`SUBSKILL.md`**（`agents/`・`references/` と併読）。人間向けの全体像は `概要.md` を参照。
 
 ## 共通の考え方（中根ラボ運用）
 

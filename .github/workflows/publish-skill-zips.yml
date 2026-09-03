@@ -27,7 +27,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
-          notes='各スキルを独立してダウンロードするための ZIP です。リポジトリ全体ではなく、使いたい ZIP だけを解凍して .cursor/skills/ または .claude/skills/ に置いてください。'
+          notes='各スキルを独立してダウンロードするための ZIP です。Claude デスクトップでは、リポジトリ全体ではなく使いたい ZIP を1つだけ取り、解凍せず Customize → Skills → Upload a skill でアップロードしてください。'
           if gh release view skills-latest >/dev/null 2>&1; then
             gh release upload skills-latest \
               academic-research-skills-nakanelabo.zip \

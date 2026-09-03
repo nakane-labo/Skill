@@ -1,16 +1,16 @@
-# Skill（配布用エージェントスキル集）
+# Skill（Claude デスクトップ用スキル集）
 
-[nakane-labo](https://github.com/nakane-labo) から配布する AI エージェント用スキルをまとめたリポジトリです。
+[nakane-labo](https://github.com/nakane-labo) から配布する、**Claude デスクトップ**向けスキルのカタログです。ゼミでは Cursor や Claude Code ではなく、Claude デスクトップに入れて使ってください。
 
-Cursor / Claude Code の GitHub インストールは、**リポジトリ直下に `SKILL.md` が1つ**あることを前提にします。このリポジトリにはスキルが3つ入っているので、**リポジトリ全体の URL や全体 ZIP は使わないでください。** 使いたいスキルのフォルダだけを、下の個別 ZIP から入れてください。
+このリポジトリにはスキルが3つ入っています。GitHub の **Code → Download ZIP**（リポジトリ全体）は使わないでください。Claude デスクトップは **スキル1つ分の ZIP** をアップロードする前提です。下の個別 ZIP を1つだけ取って、解凍せずにアップロードします。
 
 ## 収録スキル
 
-| フォルダ | 対象 | 用途 | 個別 ZIP |
-|----------|------|------|----------|
-| [`academic-research-skills-nakanelabo/`](academic-research-skills-nakanelabo/) | Claude Code / Cursor | 研究〜論文執筆・査読の学術スキルバンドル（中根ラボ版） | [academic-research-skills-nakanelabo.zip](https://github.com/nakane-labo/Skill/releases/latest/download/academic-research-skills-nakanelabo.zip) |
-| [`paper-kodoku-prep/`](paper-kodoku-prep/) | Claude Code / Cursor | 論文購読（輪読・抄読・ジャーナルクラブ）の対話型準備ガイド | [paper-kodoku-prep.zip](https://github.com/nakane-labo/Skill/releases/latest/download/paper-kodoku-prep.zip) |
-| [`booksection-rindoku-prep/`](booksection-rindoku-prep/) | Claude Code / Cursor | 本の輪読（章担当発表・テキスト講読）の対話型準備ガイド | [booksection-rindoku-prep.zip](https://github.com/nakane-labo/Skill/releases/latest/download/booksection-rindoku-prep.zip) |
+| フォルダ | 用途 | 個別 ZIP |
+|----------|------|----------|
+| [`academic-research-skills-nakanelabo/`](academic-research-skills-nakanelabo/) | 研究〜論文執筆・査読の学術スキルバンドル（中根ラボ版） | [academic-research-skills-nakanelabo.zip](https://github.com/nakane-labo/Skill/releases/latest/download/academic-research-skills-nakanelabo.zip) |
+| [`paper-kodoku-prep/`](paper-kodoku-prep/) | 論文購読（輪読・抄読・ジャーナルクラブ）の対話型準備ガイド | [paper-kodoku-prep.zip](https://github.com/nakane-labo/Skill/releases/latest/download/paper-kodoku-prep.zip) |
+| [`booksection-rindoku-prep/`](booksection-rindoku-prep/) | 本の輪読（章担当発表・テキスト講読）の対話型準備ガイド | [booksection-rindoku-prep.zip](https://github.com/nakane-labo/Skill/releases/latest/download/booksection-rindoku-prep.zip) |
 
 ### 購読準備スキルの使い分け
 
@@ -21,7 +21,7 @@ Cursor / Claude Code の GitHub インストールは、**リポジトリ直下�
 
 ### 購読準備スキルの主な機能（2026年7月版）
 
-両スキルとも、AI に要約だけもらって終わりにしない **対話型の精読ガイド** です。共通の設計思想は次のとおりです。
+両スキルとも、AI に要約だけもらって終わりにしない **対話型の精読ガイド** です。
 
 - **STEP 0〜7 を1ステップずつ**進める（要約を先に全部出さない）
 - **本文に戻らないと答えられない選択式クイズ**（A/B/C/D）を中心に出題
@@ -36,94 +36,34 @@ Cursor / Claude Code の GitHub インストールは、**リポジトリ直下�
 | 固有機能 | 英語論文モード、論文タイプ別（A/B/C/D） | 聞き手モード、章間参照、目次マップ |
 | 詳細 | [`paper-kodoku-prep/README.md`](paper-kodoku-prep/README.md) | [`booksection-rindoku-prep/README.md`](booksection-rindoku-prep/README.md) |
 
-## ダウンロード（初学者向け）
+## Claude デスクトップへの入れ方
 
-### 1. 使いたいスキルの ZIP だけ取得する
+ZIP の中は `paper-kodoku-prep/SKILL.md` のように、**スキル名フォルダが入った状態**になっています。解凍して中身だけを再圧縮すると失敗するので、**ダウンロードした ZIP をそのまま**アップロードしてください。
+
+### 1. 準備
+
+1. Claude デスクトップを開く
+2. **Settings → Capabilities** で **Code execution and file creation** をオンにする
+3. 左の **Customize → Skills** が開けることを確認する（見えないときは上のスイッチがオフです）
+
+公式の手順は [Use skills in Claude](https://support.claude.com/en/articles/12512180-use-skills-in-claude) です。
+
+### 2. 使うスキルの ZIP だけ取る
 
 上の表の「個別 ZIP」をクリックします。リポジトリ全体（`Skill-main.zip`）は入れないでください。
 
-### 2. 解凍する
+### 3. アップロードする
 
-ZIP をダブルクリックで解凍します。中にスキル名のフォルダ（例: `paper-kodoku-prep`）があり、その直下に `SKILL.md` があります。
-
-### 3. インストール先を選ぶ
-
-| ツール | プロジェクトだけで使う | すべてのプロジェクトで使う |
-|--------|------------------------|---------------------------|
-| **Claude Code** | プロジェクト直下 `.claude/skills/` | `~/.claude/skills/` |
-| **Cursor** | プロジェクト直下 `.cursor/skills/` | `~/.cursor/skills/` |
-
-例（論文購読プレップを Claude Code のプロジェクト用に入れる場合）:
-
-```
-あなたのゼミフォルダ/
-└── .claude/
-    └── skills/
-        └── paper-kodoku-prep/
-            ├── SKILL.md
-            ├── README.md
-            └── references/
-```
-
-Cursor の Skills 画面に GitHub URL を貼る場合も、**このカタログの URL は使わない**で、上の個別 ZIP を解凍してフォルダを置いてください。
+1. **Customize → Skills**
+2. **+** → **Create skill** → **Upload a skill**
+3. ダウンロードした ZIP を選ぶ（解凍しない）
+4. 一覧に出たらスイッチをオンにする
 
 ### 4. 動作確認
 
-- コピー先に `SKILL.md` があることを確認する
-- **新しいエージェントセッション**を開く（初回はツールの再起動が必要なことがあります）
-- 論文 PDF や章の PDF を渡し、「購読の準備をしたい」と依頼する
+新しいチャットを開き、論文 PDF や章の PDF を添付して、例えば「購読の準備をしたい」と頼む。スキルが使われないときは、Customize → Skills でオンになっているか確認する。
 
-## Git で1スキルだけ取る場合
+## 旧名
 
-リポジトリ全体を clone したあと、使うフォルダだけコピーしても構いません。
-
-```bash
-git clone --depth 1 https://github.com/nakane-labo/Skill.git
-cp -R Skill/paper-kodoku-prep ~/.cursor/skills/paper-kodoku-prep
-```
-
-`sparse-checkout` で最初から1フォルダだけ取る例:
-
-```bash
-git clone --depth 1 --filter=blob:none --sparse https://github.com/nakane-labo/Skill.git
-cd Skill
-git sparse-checkout set paper-kodoku-prep
-```
-
-## インストール先（スキルごとの詳細）
-
-### academic-research-skills-nakanelabo
-
-| ツール | 配置先 |
-|--------|--------|
-| Claude Code | `.claude/skills/academic-research-skills-nakanelabo/` または `~/.claude/skills/` |
-| Cursor | `.cursor/skills/academic-research-skills-nakanelabo/` または `~/.cursor/skills/` |
-
-詳細は [`academic-research-skills-nakanelabo/README.md`](academic-research-skills-nakanelabo/README.md) および [`概要.md`](academic-research-skills-nakanelabo/概要.md) を参照。
-
-### paper-kodoku-prep（論文購読プレップ）
-
-| ツール | 配置先 |
-|--------|--------|
-| Claude Code | `.claude/skills/paper-kodoku-prep/` または `~/.claude/skills/paper-kodoku-prep/` |
-| Cursor | `.cursor/skills/paper-kodoku-prep/` または `~/.cursor/skills/paper-kodoku-prep/` |
-
-詳細は [`paper-kodoku-prep/README.md`](paper-kodoku-prep/README.md) を参照。
-
-### booksection-rindoku-prep（本輪読プレップ）
-
-| ツール | 配置先 |
-|--------|--------|
-| Claude Code | `.claude/skills/booksection-rindoku-prep/` または `~/.claude/skills/booksection-rindoku-prep/` |
-| Cursor | `.cursor/skills/booksection-rindoku-prep/` または `~/.cursor/skills/booksection-rindoku-prep/` |
-
-詳細は [`booksection-rindoku-prep/README.md`](booksection-rindoku-prep/README.md) を参照。
-
-## 旧リポジトリ・旧名について
-
-以下は本リポジトリへ統合済みです（アーカイブ）。
-
-- `academic-research-skills-nakanelabo` → `academic-research-skills-nakanelabo/`
-- `ronbun-kodoku-prep` → **`paper-kodoku-prep/`**（2026年7月に改名・大幅拡張）
-
-`ronbun-kodoku-prep` フォルダは削除されています。最新版は `paper-kodoku-prep` を使ってください。
+- `ronbun-kodoku-prep` は **`paper-kodoku-prep`** に改名済みです
+- 学術スキルは `academic-research-skills-nakanelabo/` を使ってください
