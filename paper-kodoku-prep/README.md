@@ -51,24 +51,20 @@ AI に要約だけもらって終わりにしない。選択式クイズと問�
 
 ## ダウンロード
 
-本スキルは [`nakane-labo/Skill`](https://github.com/nakane-labo/Skill) リポジトリの `paper-kodoku-prep/` に収録されています。
+このスキルだけを入れてください。カタログ全体（[`nakane-labo/Skill`](https://github.com/nakane-labo/Skill) の Code → Download ZIP）は使わないでください。3スキルが一緒に入るため、Cursor / Claude Code の GitHub インストールに失敗します。
 
-### 方法A：リポジトリ全体を ZIP で取得（おすすめ）
+### 方法A：このスキルの ZIP だけ取得する（おすすめ）
 
-1. [Skill リポジトリ](https://github.com/nakane-labo/Skill) を開く
-2. 緑色の **Code** ボタン → **Download ZIP** をクリック
-3. ZIP を解凍する（フォルダ名は `Skill-main` など）
-4. 中の `paper-kodoku-prep` フォルダだけを使う
+1. [paper-kodoku-prep.zip](https://github.com/nakane-labo/Skill/releases/latest/download/paper-kodoku-prep.zip) をダウンロードする
+2. 解凍する。中の `paper-kodoku-prep` フォルダ直下に `SKILL.md` がある
+3. そのフォルダをインストール先へコピーする
 
-ZIP の直接リンク（main ブランチ）:
-
-https://github.com/nakane-labo/Skill/archive/refs/heads/main.zip
-
-### 方法B：Git で clone する
+### 方法B：Git でこのフォルダだけ取る
 
 ```bash
-git clone https://github.com/nakane-labo/Skill.git
-cd Skill/paper-kodoku-prep
+git clone --depth 1 --filter=blob:none --sparse https://github.com/nakane-labo/Skill.git
+cd Skill
+git sparse-checkout set paper-kodoku-prep
 ```
 
 ## インストール先

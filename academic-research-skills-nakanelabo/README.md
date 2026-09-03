@@ -6,9 +6,12 @@
 
 ## クイックスタート
 
-1. このリポジトリを ZIP でダウンロードするか clone する
-2. フォルダ `academic-research-skills-nakanelabo` を Claude Code のスキル配置先に置く（例: プロジェクトの `.claude/skills/` または `~/.claude/skills/`）
-3. ルートの `SKILL.md` がエントリポイント。人間向けの全体像は **[概要.md](概要.md)** を参照
+1. **このスキルの ZIP だけ**をダウンロードする（カタログ全体の `Skill-main.zip` は使わない）
+   - [academic-research-skills-nakanelabo.zip](https://github.com/nakane-labo/Skill/releases/latest/download/academic-research-skills-nakanelabo.zip)
+2. 解凍した `academic-research-skills-nakanelabo` フォルダをスキル配置先に置く
+   - Claude Code: `.claude/skills/academic-research-skills-nakanelabo/` または `~/.claude/skills/academic-research-skills-nakanelabo/`
+   - Cursor: `.cursor/skills/academic-research-skills-nakanelabo/` または `~/.cursor/skills/academic-research-skills-nakanelabo/`
+3. フォルダ直下の `SKILL.md` がエントリポイント。人間向けの全体像は **[概要.md](概要.md)** を参照
 
 ## 構成（4 サブスキル）
 

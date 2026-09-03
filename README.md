@@ -2,13 +2,15 @@
 
 [nakane-labo](https://github.com/nakane-labo) から配布する AI エージェント用スキルをまとめたリポジトリです。
 
+Cursor / Claude Code の GitHub インストールは、**リポジトリ直下に `SKILL.md` が1つ**あることを前提にします。このリポジトリにはスキルが3つ入っているので、**リポジトリ全体の URL や全体 ZIP は使わないでください。** 使いたいスキルのフォルダだけを、下の個別 ZIP から入れてください。
+
 ## 収録スキル
 
-| フォルダ | 対象 | 用途 |
-|----------|------|------|
-| [`academic-research-skills-nakanelabo/`](academic-research-skills-nakanelabo/) | **Claude Code / Cursor** | 研究〜論文執筆・査読の学術スキルバンドル（中根ラボ版） |
-| [`paper-kodoku-prep/`](paper-kodoku-prep/) | **Claude Code / Cursor** | 論文購読（輪読・抄読・ジャーナルクラブ）の対話型準備ガイド |
-| [`booksection-rindoku-prep/`](booksection-rindoku-prep/) | **Claude Code / Cursor** | 本の輪読（章担当発表・テキスト講読）の対話型準備ガイド |
+| フォルダ | 対象 | 用途 | 個別 ZIP |
+|----------|------|------|----------|
+| [`academic-research-skills-nakanelabo/`](academic-research-skills-nakanelabo/) | Claude Code / Cursor | 研究〜論文執筆・査読の学術スキルバンドル（中根ラボ版） | [academic-research-skills-nakanelabo.zip](https://github.com/nakane-labo/Skill/releases/latest/download/academic-research-skills-nakanelabo.zip) |
+| [`paper-kodoku-prep/`](paper-kodoku-prep/) | Claude Code / Cursor | 論文購読（輪読・抄読・ジャーナルクラブ）の対話型準備ガイド | [paper-kodoku-prep.zip](https://github.com/nakane-labo/Skill/releases/latest/download/paper-kodoku-prep.zip) |
+| [`booksection-rindoku-prep/`](booksection-rindoku-prep/) | Claude Code / Cursor | 本の輪読（章担当発表・テキスト講読）の対話型準備ガイド | [booksection-rindoku-prep.zip](https://github.com/nakane-labo/Skill/releases/latest/download/booksection-rindoku-prep.zip) |
 
 ### 購読準備スキルの使い分け
 
@@ -36,30 +38,15 @@
 
 ## ダウンロード（初学者向け）
 
-### 1. ZIP を取得する
+### 1. 使いたいスキルの ZIP だけ取得する
 
-リポジトリ全体の ZIP（main ブランチ）:
-
-https://github.com/nakane-labo/Skill/archive/refs/heads/main.zip
-
-または [Skill リポジトリ](https://github.com/nakane-labo/Skill) の **Code** → **Download ZIP** から取得してください。
+上の表の「個別 ZIP」をクリックします。リポジトリ全体（`Skill-main.zip`）は入れないでください。
 
 ### 2. 解凍する
 
-ダウンロードした `Skill-main.zip`（または `Skill-main.zip` に近い名前）をダブルクリックで解凍します。  
-中に `Skill-main` フォルダができ、その直下に各スキルのフォルダがあります。
+ZIP をダブルクリックで解凍します。中にスキル名のフォルダ（例: `paper-kodoku-prep`）があり、その直下に `SKILL.md` があります。
 
-### 3. 使うスキルだけコピーする
-
-全部入れる必要はありません。**使いたいスキルのフォルダ1つ**を、下記のインストール先にコピーしてください。
-
-| 使いたいスキル | コピーするフォルダ |
-|----------------|-------------------|
-| 学術研究・論文執筆 | `academic-research-skills-nakanelabo/` |
-| 論文の購読準備 | `paper-kodoku-prep/` |
-| 本の章の輪読準備 | `booksection-rindoku-prep/` |
-
-### 4. インストール先を選ぶ
+### 3. インストール先を選ぶ
 
 | ツール | プロジェクトだけで使う | すべてのプロジェクトで使う |
 |--------|------------------------|---------------------------|
@@ -78,11 +65,30 @@ https://github.com/nakane-labo/Skill/archive/refs/heads/main.zip
             └── references/
 ```
 
-### 5. 動作確認
+Cursor の Skills 画面に GitHub URL を貼る場合も、**このカタログの URL は使わない**で、上の個別 ZIP を解凍してフォルダを置いてください。
+
+### 4. 動作確認
 
 - コピー先に `SKILL.md` があることを確認する
 - **新しいエージェントセッション**を開く（初回はツールの再起動が必要なことがあります）
 - 論文 PDF や章の PDF を渡し、「購読の準備をしたい」と依頼する
+
+## Git で1スキルだけ取る場合
+
+リポジトリ全体を clone したあと、使うフォルダだけコピーしても構いません。
+
+```bash
+git clone --depth 1 https://github.com/nakane-labo/Skill.git
+cp -R Skill/paper-kodoku-prep ~/.cursor/skills/paper-kodoku-prep
+```
+
+`sparse-checkout` で最初から1フォルダだけ取る例:
+
+```bash
+git clone --depth 1 --filter=blob:none --sparse https://github.com/nakane-labo/Skill.git
+cd Skill
+git sparse-checkout set paper-kodoku-prep
+```
 
 ## インストール先（スキルごとの詳細）
 
