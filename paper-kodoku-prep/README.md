@@ -51,7 +51,7 @@ AI に要約だけもらって終わりにしない。選択式クイズと問�
 
 ## ダウンロード（Claude デスクトップ）
 
-このスキルは **Claude デスクトップ**用です。カタログ全体（[`nakane-labo/Skill`](https://github.com/nakane-labo/Skill) の Code → Download ZIP）は使わないでください。3スキルが一緒に入るとアップロードに失敗します。
+このスキルは **Claude デスクトップ**用です。カタログ全体（[`nakane-labo/Skill`](https://github.com/nakane-labo/Skill) の Code → Download ZIP）は使わないでください。他のスキルと一緒に入るとアップロードに失敗します。
 
 1. [paper-kodoku-prep.zip](https://github.com/nakane-labo/Skill/releases/latest/download/paper-kodoku-prep.zip) をダウンロードする（**解凍しない**）
 2. Claude デスクトップで **Settings → Capabilities** の **Code execution and file creation** をオンにする

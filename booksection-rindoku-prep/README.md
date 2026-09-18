@@ -63,7 +63,7 @@ STEP 2〜4 の問いはタイプ（M/E/T/K）で差し替わります。詳細�
 
 ## ダウンロード（Claude デスクトップ）
 
-このスキルは **Claude デスクトップ**用です。カタログ全体（[`nakane-labo/Skill`](https://github.com/nakane-labo/Skill) の Code → Download ZIP）は使わないでください。3スキルが一緒に入るとアップロードに失敗します。
+このスキルは **Claude デスクトップ**用です。カタログ全体（[`nakane-labo/Skill`](https://github.com/nakane-labo/Skill) の Code → Download ZIP）は使わないでください。他のスキルと一緒に入るとアップロードに失敗します。
 
 1. [booksection-rindoku-prep.zip](https://github.com/nakane-labo/Skill/releases/latest/download/booksection-rindoku-prep.zip) をダウンロードする（**解凍しない**）
 2. Claude デスクトップで **Settings → Capabilities** の **Code execution and file creation** をオンにする
