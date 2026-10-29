@@ -10,6 +10,7 @@
 """
 import argparse
 import csv
+import re
 import sys
 from collections import OrderedDict
 
@@ -45,7 +46,12 @@ def main():
     a = ap.parse_args()
 
     with open(a.csv, encoding="utf-8-sig", newline="") as f:
-        rows = [r for r in csv.DictReader(f) if r.get("スキルに載せる", "はい").strip() in ("はい", "")]
+        # kintone の書き出しは項目名（ラベル）が見出しになる。
+        # 「テーマの説明（学生に見せる）」のような括弧書きを外して、フィールドコードと同じ名前にそろえる。
+        raw = list(csv.DictReader(f))
+        rows = [{re.sub(r"[（(].*?[）)]$", "", k.strip()): (v or "") for k, v in r.items() if k}
+                for r in raw]
+        rows = [r for r in rows if r.get("スキルに載せる", "はい").strip() in ("はい", "")]
     if not rows:
         sys.exit("載せるレコードがありません。")
 
