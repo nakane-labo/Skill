@@ -52,6 +52,13 @@
 
 方針は、「文章の中身（SKILL、agents、授業・研究で使う references）を優先し、開発用の仕組みは削る」です。削ったファイルを必要に応じて戻すときは、200上限を確かめてからにします。
 
+## 既知の課題
+
+今回の取り込みでは直していない。
+
+- 参照切れが約175件ある。主な種類は、本家 `docs/` の設計文書への参照、削除済みの `references` への参照、改名前の `academic-*/SKILL.md` への参照、`概要.md` のプレフィックス違い、`scripts/*.py` への参照、各サブスキル（academic-paper、deep-research、academic-pipeline）の `references/changelog.md` への参照。一覧は取り込み時の照合で作った。
+- `academic-paper-reviewer/agents/domain_reviewer_agent.md` の Reference date は、品質ゲートに「参照日を書く」とあるが、出力テンプレートに欄がない（本家にはある）。
+
 ## ラボ改変の一覧
 
 比較の基準は本家 v3.14.0 です。

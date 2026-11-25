@@ -35,8 +35,8 @@
 
 ### タイトルの照合
 
-- タイトルは「大文字小文字と句読点を畳んだうえで完全一致」で同じとみなす。`Attention Is All You Need` と `Attention Is Not All You Need` は、字面が近くても別の文献。
-- DOI で引いて見つかった文献のタイトルが、引用側のタイトルと明らかに違う（類似度の目安 0.70 未満）ときは `DOI_MISMATCH`（DOI を取り違えている疑い）として SERIOUS に上げる。integrity_verification_agent の A0 と同じ扱い。
+- 検索結果のなかから「同じ文献」を選ぶ基準（検索ヒットの同一判定）: タイトルは「大文字小文字と句読点を畳んだうえで完全一致」で同じとみなす。`Attention Is All You Need` と `Attention Is Not All You Need` は、字面が近くても別の文献。
+- DOI を取り違えていないかの警告の基準（DOI 指定の照会で見つかった文献を、引用側と比べる場合）: 見つかった文献のタイトルが、引用側のタイトルと明らかに違う（類似度の目安 0.70 未満）ときは `DOI_MISMATCH`（DOI を取り違えている疑い）として SERIOUS に上げる。integrity_verification_agent の A0 と同じ扱い。
 - 日本語タイトルでは、全角と半角、括弧（「」『』）、スペースの有無を畳んでから比べる。
 
 ## 2. 照会先の引き方
@@ -75,7 +75,9 @@ DOI は、登録機関（RA）が Crossref とは限らない。J-STAGE や国�
 1. DOI があれば、先に `https://doi.org/doiRA/<DOI>` を引く。返ってくる `RA` が登録機関。
 2. `RA` が `Crossref` なら、上の Crossref と OpenAlex の照会をそのまま使う。
 3. `RA` が `Crossref` 以外（`JaLC` など）なら、Crossref と OpenAlex の照会結果で `false` にしない。この2つの結果は `skipped` として扱い、次の 3-2 の照会先で確かめる。
-4. `doiRA` の照会そのものに失敗したときは、登録機関が分からないので、Crossref の `unmatched` を `false` の根拠にしない（`unresolvable`）。
+4. `doiRA` が `[{"DOI":"...","status":"DOI does not exist"}]`（`RA` 欄が無い。HTTP 200）を返したときは、その DOI は存在しない。DOI を指定した照会で見つからなかったことになるので、`false` 側とする（`unmatched` と同じ扱い）。偽造 DOI の最も強い証拠なので、`unresolvable` に落とさない。
+5. `doiRA` の照会そのものに失敗したとき（タイムアウト、5xx、応答が読めない）は、登録機関が分からないので、Crossref の `unmatched` を `false` の根拠にしない（`unresolvable`）。「存在しない」と「照会の失敗」を混同しない。
+6. `RA` が `JaLC` の DOI は、`https://api.japanlinkcenter.org/dois/<DOI>`（JaLC の DOI 照会。リダイレクトに従う）で照会する。見つかれば `true`（`title_list` のタイトルを照合規則で比べる）。404 で見つからなければ `false`。この照会も失敗（タイムアウト、5xx）したときは `unresolvable`。
 
 ### 3-2. 日本語文献の照会先
 
@@ -83,13 +85,13 @@ DOI は、登録機関（RA）が Crossref とは限らない。J-STAGE や国�
 
 | 照会先 | 引き方 |
 |---|---|
-| CiNii Research | `https://cir.nii.ac.jp/` の検索（論文・図書・雑誌）。タイトル、著者、刊行年で探す |
-| J-STAGE | `https://www.jstage.jst.go.jp/` の検索。DOI があれば `https://doi.org/<DOI>` の移動先で確かめる |
-| NDL サーチ | `https://ndlsearch.ndl.go.jp/` の検索。図書、雑誌記事、博士論文に強い |
+| CiNii Research | `https://cir.nii.ac.jp/opensearch/all?q=<語>&format=json`（論文・図書・雑誌を横断）。結果の `items[].title` を照合規則で比べる。検索ページ（`https://cir.nii.ac.jp/` の画面）は JavaScript で描画され、取得しても本文が空なので使わない |
+| J-STAGE | `https://api.jstage.jst.go.jp/searchapi/do?service=3&article=<論文タイトル>`（論文タイトルのパラメータは `title` ではなく `article`。`author`、`pubyearfrom` なども併用できる）。応答は Atom。DOI があれば `https://doi.org/<DOI>` の移動先でも確かめる |
+| NDL サーチ | `https://ndlsearch.ndl.go.jp/api/opensearch?title=<書名>`（`creator` を併用できる）。図書、雑誌記事、博士論文に強い。応答は RSS。429 が返ったら `unreachable`（間隔を空けて再試行） |
 
 - どの照会先でも確認できなければ `unresolvable` とし、`false` にしない。日本語文献は、DOI が JaLC のものを除けば、DOI も arXiv ID も無いことが多い。タイトル検索で見つからないことは `false` の根拠にならない。
-- 日本語文献で `false` にしてよいのは、登録機関が Crossref と確かめられた DOI を指定して Crossref で 404 になった場合に限る。
-- これらの検索ページは Web 取得で結果を読めないことがある。読めなければ `unreachable` と書く。
+- 日本語文献で `false` にしてよいのは、DOI を指定した照会で見つからなかった場合に限る（登録機関が Crossref と確かめられた DOI の Crossref での 404、JaLC の DOI の JaLC での 404、`doiRA` が `DOI does not exist`）。
+- これらの照会先に届かない、または結果を読めないときは `unreachable` と書く（`unresolvable` 側。`false` にしない）。
 
 ## 4. 使い方（既存の照合に足す）
 

@@ -62,6 +62,7 @@ description: >-
 ## 参照パス
 
 - 共有: `shared/handoff_schemas.md`, `shared/style_calibration_protocol.md`
+- 引用の実在確認: `shared/references/citation_existence_gate.md`
 - 日本語概要（人間向け）: `概要.md`
 - インストール要点: `README.md`
 

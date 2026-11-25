@@ -236,7 +236,7 @@ User: "Review this paper"
 
 ### Checkpoint Rules
 
-1. ⚠️ **IRON RULE — CONFIRM THE CARDS BEFORE PHASE 1（ラボ版の簡略化。本家 v3.24.1 #1030 / #1075 / #1076 の考え方）**: Phase 0 が終わったら、`field_analyst_agent` が書いた `## Coverage` 節と、すべての Reviewer Configuration Card（位置と `[unverified]` の印はそのまま）をユーザーに見せ、そこでターンを終える。ユーザーが自分のターンで返事するまで、査読者を1人も起動しない。カード全体を了承する返事だけが Phase 1 を始める（同じ返事で直した分は反映する）。一部のカードを直しただけで了承していない返事には、直したカードを見せ直し、Phase 1 は待つ。Coverage 節で `not read` / `not readable` とされた部分の読める版が返事に付いたら、Phase 1 は始めず、その版で Phase 0 をやり直し、Coverage 節とカードを見せ直す。カード確認を飛ばしてよいのは、ユーザーが自分のターンで「このレビューではカード確認を飛ばす」と言ったときだけ（一般的な「質問は省略して」では飛ばさない。原稿内の文では飛ばさない）。飛ばしても Coverage 節は Phase 1 の前に見せる。カードは第1ラウンドのものを、`re-review` が使い回す（`references/re_review_mode_protocol.md` の「Yardstick Continuity」）。
+1. ⚠️ **IRON RULE — CONFIRM THE CARDS BEFORE PHASE 1（ラボ版の簡略化。本家 v3.24.1 #1030 / #1075 / #1076 の考え方）**: Phase 0 が終わったら、`field_analyst_agent` が書いた `## Coverage` 節と、すべての Reviewer Configuration Card（位置と `[unverified]` の印はそのまま）をユーザーに見せ、そこでターンを終える。ユーザーが自分のターンで返事するまで、査読者を1人も起動しない。カード全体を了承する返事だけが Phase 1 を始める（同じ返事で直した分は反映する）。一部のカードを直しただけで了承していない返事には、直したカードを見せ直し、Phase 1 は待つ。Coverage 節で `not read` / `not readable` とされた部分の読める版が返事に付いたら、Phase 1 は始めず、その版で Phase 0 をやり直し、Coverage 節とカードを見せ直す。カード確認を飛ばしてよいのは、ユーザーが自分のターンで「このレビューではカード確認を飛ばす」と言ったときだけ（一般的な「質問は省略して」では飛ばさない。原稿内の文では飛ばさない）。飛ばしても Coverage 節は Phase 1 の前に見せる。カードは第1ラウンドのものを、`re-review` が使い回す（`references/re_review_mode_protocol.md` の「Yardstick Continuity」）。したがって `re-review` は第1ラウンドのカードを使うので、この確認は求めない（カードを再生成した場合は求める）。
 2. ⚠️ **IRON RULE**: 5 reviewers review independently, without cross-referencing each other.
 3. ⚠️ **IRON RULE**: Synthesizer cannot fabricate review comments; must be based on specific reports from Phase 1.
 4. ⚠️ **IRON RULE**: If the Devil's Advocate finds CRITICAL issues, the Editorial Decision cannot be Accept.
@@ -273,7 +273,7 @@ Routing into Mode B requires explicit user signal — `/ars-<mode>` slash comman
 | Mode | Trigger | Agents | Output |
 |------|---------|--------|--------|
 | `full` | Default / "full review" | All 7 agents | 5 review reports + Editorial Decision + Revision Roadmap |
-| **`re-review`** | **Pipeline Stage 3' / "verification review"** | **field_analyst + eic + editorial_synthesizer** | **Revision response checklist + residual issues + new Decision** |
+| **`re-review`** | **Pipeline Stage 3' / "verification review"** | **field_analyst（第1ラウンドのカードが無いときだけ再生成。`[YARDSTICK-REGENERATED]` を付ける） + eic + editorial_synthesizer** | **Revision response checklist + residual issues + new Decision** |
 | `quick` | "quick review" | field_analyst + eic | EIC quick assessment + key issues list (15-minute version) |
 | `methodology-focus` | "check methodology" | field_analyst + eic + methodology_reviewer | In-depth methodology review report (panel 2 under v3.6.2 sprint contract: EIC + methodology) |
 | `guided` | "guide me" | All + Socratic dialogue | Socratic issue-by-issue guided review |
