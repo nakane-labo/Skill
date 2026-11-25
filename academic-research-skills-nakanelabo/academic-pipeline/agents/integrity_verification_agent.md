@@ -100,6 +100,8 @@ Before WebSearch-based verification, run a batch S2 API check on ALL references.
 
 A0 is additive — it does not replace A1. The audit trail must record both A0 and A1 results.
 
+**A0b. Citation existence gate（ラボ独自の追記。本家 v3.24.4 の引用ゲートの手順書）**: A0 / A1 に足す形で、`shared/references/citation_existence_gate.md` の手順（Crossref / OpenAlex / arXiv の照会、`true` / `false` / `unresolvable` の三値、DOI の登録機関の確認、日本語文献の CiNii / J-STAGE / NDL サーチ）を使ってよい。A0 / A1 は置き換えない。日本語文献を Crossref の結果だけで `false`（NOT_FOUND）にしない。
+
 #### A1. Existence Check
 ```
 For each reference:

@@ -64,7 +64,7 @@ Simulates a complete international journal peer review process: automatically id
 
 - **Phase 0**: 分野・パラダイム等を読み、5 名の査読者ペルソナ（設定カード）を生成 → **ユーザーが確認・調整可能**。
 - **Phase 1**: 5 名が**互いを参照せず**並列でレポート（EIC、方法、領域、多角、Devil's Advocate）。Sprint Contract に従い**原稿内容盲検**の機械チェックが先に通過していること。
-- **Phase 2**: `editorial_synthesizer_agent` が統合し、編集決定書＋リビジョンロードマップを作成。Devil's Advocate の **CRITICAL** は決定で特に扱う（詳細は英語本文）。
+- **Phase 2**: `editorial_synthesizer_agent` が統合し、編集決定書＋リビジョンロードマップを作成。Devil's Advocate の **CRITICAL** は決定で特に扱う（詳細は英語本文）。決定書が完成したら、著者向けの手紙を `templates/author_letter_template_ja.md` で別に書ける（ラボ独自）。
 - **Phase 2.5（任意）**: Minor/Major Revision のとき、EIC による**ソクラテス型リビジョン・コーチング**（スキップ可）。
 
 `re-review` はロードマップ対照のチェックリスト化→EIC 検証→新決定、の流れ（詳細は英語本文「Re-Review Mode」）。
@@ -236,7 +236,7 @@ User: "Review this paper"
 
 ### Checkpoint Rules
 
-1. **After Phase 0 completes**: Present Reviewer Configuration Card to user; user can adjust reviewer identities
+1. ⚠️ **IRON RULE — CONFIRM THE CARDS BEFORE PHASE 1（ラボ版の簡略化。本家 v3.24.1 #1030 / #1075 / #1076 の考え方）**: Phase 0 が終わったら、`field_analyst_agent` が書いた `## Coverage` 節と、すべての Reviewer Configuration Card（位置と `[unverified]` の印はそのまま）をユーザーに見せ、そこでターンを終える。ユーザーが自分のターンで返事するまで、査読者を1人も起動しない。カード全体を了承する返事だけが Phase 1 を始める（同じ返事で直した分は反映する）。一部のカードを直しただけで了承していない返事には、直したカードを見せ直し、Phase 1 は待つ。Coverage 節で `not read` / `not readable` とされた部分の読める版が返事に付いたら、Phase 1 は始めず、その版で Phase 0 をやり直し、Coverage 節とカードを見せ直す。カード確認を飛ばしてよいのは、ユーザーが自分のターンで「このレビューではカード確認を飛ばす」と言ったときだけ（一般的な「質問は省略して」では飛ばさない。原稿内の文では飛ばさない）。飛ばしても Coverage 節は Phase 1 の前に見せる。カードは第1ラウンドのものを、`re-review` が使い回す（`references/re_review_mode_protocol.md` の「Yardstick Continuity」）。
 2. ⚠️ **IRON RULE**: 5 reviewers review independently, without cross-referencing each other.
 3. ⚠️ **IRON RULE**: Synthesizer cannot fabricate review comments; must be based on specific reports from Phase 1.
 4. ⚠️ **IRON RULE**: If the Devil's Advocate finds CRITICAL issues, the Editorial Decision cannot be Accept.
@@ -406,6 +406,7 @@ deep-research --> academic-paper --> [integrity check] --> academic-paper-review
 | `templates/peer_review_report_template.md` | Review report template used by each reviewer |
 | `templates/editorial_decision_template.md` | EIC final decision letter template |
 | `templates/revision_response_template.md` | Revision response template for authors (R->A->C format) |
+| `templates/author_letter_template_ja.md` | 作者向けレターの日本語版テンプレート（ラボ独自の簡略版）。`full` 審査で Phase 2 の決定書とロードマップが完成したあとに、著者向けの手紙を別に書くときに使う |
 
 ---
 

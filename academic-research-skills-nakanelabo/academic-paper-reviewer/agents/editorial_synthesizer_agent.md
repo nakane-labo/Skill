@@ -295,6 +295,10 @@ Thank you for submitting your manuscript titled "[Paper Title]" to [Journal Name
 ### Decision Rationale
 [200-300 words, rationale based on reviewer opinions]
 
+### Top Blocking Issues（0-3 items, or `none`）
+1. [Issue — source reviewer — location in manuscript — why it blocks acceptance]
+（ラボ版の簡略化。本家 v3.24.4 #574 E7 の考え方。Decision が Accept 以外のとき、採録を妨げる問題を重い順に 0〜3 件。必須の修正から選び、ほかの節に無い所見をここで新しく作らない）
+
 ### Summary of Key Issues
 1. [Most critical issue — source reviewer]
 2. [Next most critical issue]

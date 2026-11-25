@@ -73,6 +73,12 @@ Requirements:
 - Explain why this decision was chosen rather than a more or less strict one
 - If Reject, explain why revision also cannot salvage it
 
+### Top Blocking Issues（ラボ版の簡略化。本家 v3.24.4 #574 E7 の考え方）
+
+Decision が Accept 以外のとき、採録を妨げている問題を 0〜3 件、重い順に書く。各件に、元の査読者（役割）、原稿の位置、なぜ妨げになるのかを添える。該当が無ければ `none`。必須の修正から選び、ほかの節に無い所見をここで新しく作らない。
+
+1. [Issue — source reviewer — location — why it blocks acceptance]
+
 ---
 
 ## Required Revisions * (Must Fix)

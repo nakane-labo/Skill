@@ -158,15 +158,15 @@
         },
         "openalex_unmatched": {
           "type": "boolean",
-          "description": "True when an OpenAlex API lookup (per references/openalex_api_protocol.md) returned no match by DOI (with title cross-check) or title. Mirrors semantic_scholar_unmatched semantics. The check fires only when obtained_via != 'manual'. Per spec v3.9.0 §3.4."
+          "description": "True when an OpenAlex API lookup (per shared/references/citation_existence_gate.md) returned no match by DOI (with title cross-check) or title. Mirrors semantic_scholar_unmatched semantics. The check fires only when obtained_via != 'manual'. Per spec v3.9.0 §3.4."
         },
         "crossref_unmatched": {
           "type": "boolean",
-          "description": "True when a Crossref API lookup (per references/crossref_api_protocol.md) returned no match by DOI (with title cross-check) or title. Mirrors semantic_scholar_unmatched semantics. The check fires only when obtained_via != 'manual'. Per spec v3.9.0 §3.5."
+          "description": "True when a Crossref API lookup (per shared/references/citation_existence_gate.md) returned no match by DOI (with title cross-check) or title. Mirrors semantic_scholar_unmatched semantics. The check fires only when obtained_via != 'manual'. Per spec v3.9.0 §3.5."
         },
         "arxiv_unmatched": {
           "type": "boolean",
-          "description": "True when an arXiv API lookup (per references/arxiv_api_protocol.md) returned no match by arXiv ID (with title cross-check) or title. Mirrors semantic_scholar_unmatched / crossref_unmatched / openalex_unmatched semantics, extending the v3.9.0 triplet to a four-index triangulation. The check fires only when obtained_via != 'manual'. Per spec v3.11 #182 Delta 1. Note: this is the raw triangulation signal; the #182 Delta 4 unified summary narrows the existence-gate `false` to ID-keyed unmatched (a title-only arxiv_unmatched with no resolvable arXiv ID is a coverage-gap signal, not fabrication evidence, per C-V6(a))."
+          "description": "True when an arXiv API lookup (per shared/references/citation_existence_gate.md) returned no match by arXiv ID (with title cross-check) or title. Mirrors semantic_scholar_unmatched / crossref_unmatched / openalex_unmatched semantics, extending the v3.9.0 triplet to a four-index triangulation. The check fires only when obtained_via != 'manual'. Per spec v3.11 #182 Delta 1. Note: this is the raw triangulation signal; the #182 Delta 4 unified summary narrows the existence-gate `false` to ID-keyed unmatched (a title-only arxiv_unmatched with no resolvable arXiv ID is a coverage-gap signal, not fabrication evidence, per C-V6(a))."
         }
       }
     },
