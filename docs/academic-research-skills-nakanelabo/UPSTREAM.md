@@ -18,6 +18,7 @@
 
 | 日付 | 本家の版 | 本家の commit | 取り込んだもの |
 |---|---|---|---|
+| 2026-11-26 | v3.24.4 の27コミット先 | 3eb9f07（作業ツリーのファイルを直接読んだ） | **一部取り込み**。取り込んだもの: 引用の実在確認の手順書 `shared/references/citation_existence_gate.md`（新設。三値規則に、DOI の登録機関の確認と日本語文献の照会先 CiNii / J-STAGE / NDL サーチをラボ独自に追加）、`firm_rules.md` などの参照切れ修正、レビューの小改善（参考文献の創作禁止、`<paper_content>` で原稿をデータ扱い、Top Blocking Issues 節、カード確認待ちと Coverage 節、未確認の掲載誌を勧めない、原稿の日付時点での文献網羅判定）、作者向けレターの日本語版テンプレート `templates/author_letter_template_ja.md`（簡略版）、re-review の「ものさし継続」と改訂原稿・Response to Reviewers のデータ扱い。見送ったもの: 倫理審査向け revision-coach 変種、sr-screener、3ゲート契約と Stage 4→3' の引き渡し変更、すべてのスクリプト |
 | 2026-11-26 | v3.14.0 | 8157a15 | academic-paper-reviewer の5本を補充（commit 6e29272）。`references/changelog.md`、`references/guided_mode_protocol.md`、`references/integration_guide.md`、`references/re_review_mode_protocol.md`、`templates/peer_review_report_template.md`。先頭に出典コメントを足してある |
 | 2026-11 より前 | v3.14.0 | 8157a15 | 全体を v3.14.0 系に更新（academic-paper 3.2.0 など）。個別の日付と commit は記録が残っていない |
 | それ以前 | v3.6.x 系 | 3e953ce（v3.6.5）ほか | 最初の取り込み。個別の記録なし |
@@ -30,13 +31,16 @@
 
 ## v3.24 系の扱い
 
-本家 v3.24 系は**評価中**で、取り込んでいません。主な理由は次のとおりです。
+本家 v3.24 系は、2026-11-26 に**一部だけ取り込む**と決めて取り込みました（上の履歴の表を参照）。版番号は v3.14.0 系のままです。ラボ版の独自採番（academic-paper 3.2.0 など）も変えていません。
+
+取り込まない理由は次のとおりです。
 
 - 本家はプラグイン形式になり、`scripts/`（473ファイル）や `shared/contracts/` が大きく増えた。スキル1本200ファイルの上限に収まらない。
 - 追加機能の多くは codex など外部 CLI や Python スクリプトが前提で、Claude だけの環境では動かない。
-- 優先して調べる候補は、引用の実在を確かめる検証ゲート、re-review の新仕様（ただし依存が重い）、レターの言語指定などの軽いプロンプト変更。
+- 倫理審査向け revision-coach 変種は、使う見込みが立っていないため見送った。sr-screener は、価値の大半がスクリプトと並列エージェントにあり、ラボの用途にも近くないため見送った（必要になれば別スキルとして別ZIPで入れる）。
+- re-review の3ゲート契約は、スクリプトの検査が前提のため入れていない。
 
-評価の結果は、取り込むと決めた時点でこの表に追記します。
+取り込んだ文には、出典（本家の版や issue 番号）と、ラボ独自の簡略化である旨を残してあります。
 
 ## 本家から削ったファイル
 

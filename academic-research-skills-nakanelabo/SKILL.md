@@ -65,4 +65,4 @@ description: >-
 - 日本語概要（人間向け）: `概要.md`
 - インストール要点: `README.md`
 
-**バンドル版メモ**: v3.14.0 系（deep-research 2.11.0 / academic-paper **3.2.0** / academic-pipeline 3.14.0 / reviewer 1.10.0、上流 2026-07 時点）。**academic_writing_advice_ja**（2026-05-17）を含む。長いパイプラインはユーザ確認のチェックポイントで分割すること。
+**バンドル版メモ**: v3.14.0 系（deep-research 2.11.0 / academic-paper **3.2.0** / academic-pipeline 3.14.0 / reviewer 1.10.0、上流 2026-07 時点）。**academic_writing_advice_ja**（2026-05-17）を含む。v3.24.4 から一部取り込み（引用確認手順・レビュー改善。2026-11-26。版番号は v3.14.0 系のまま。詳細はリポジトリの docs にある UPSTREAM 文書）。長いパイプラインはユーザ確認のチェックポイントで分割すること。
