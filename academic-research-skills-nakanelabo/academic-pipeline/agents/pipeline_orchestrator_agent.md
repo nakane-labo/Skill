@@ -873,6 +873,8 @@ The finalizer reads `venue_type` / `venue_type_provenance` only as DECLARED entr
 
 ### Citation-existence terminal promotion under strict (v3.11 / C-V6)
 
+（ラボ独自の注記）`lookup_verified` の `true` / `false` / `unresolvable` を作る手順は `shared/references/citation_existence_gate.md`（本家のスクリプトはラボ版に無い）。
+
 The `terminal_policies.citation_existence` key (enum `{advisory, strict}`, spec `docs/design/2026-05-21-v3.10-182-promote-citation-gate-spec.md` §2 Delta 3 + INVARIANT C-V6) governs the `lookup_verified == false` verdict from the `citation_verification_summary[]` aggregate (Delta 4). It inherits the SAME opt-in terminal model as `contamination_triangulation` — default advisory, opt-in `strict` — and introduces NO second hard-block philosophy. The finalizer is the sole policy evaluator here too; no new control-plane writer is added (this is the L4-question-3 boundary, not L1 hidden culling — the verdict is external-API factual, the flagged citation stays visible and annotated, and `resolver_outcomes` makes the criterion fully auditable).
 
 The verdict input is the narrowed-`false` (C-V6(a)): `lookup_verified == false` ONLY when at least one ID-keyed (DOI / arXiv-ID) resolver returned `unmatched` with no `matched` — a provably-bogus identifier. A title-only `unmatched` with no resolvable identifier reduces to `unresolvable` (a coverage gap — regional / non-English / pre-digital paper indexed nowhere), NEVER `false`. The finalizer consumes the verdict the Delta 4 reducer already computed; it does NOT re-derive it.

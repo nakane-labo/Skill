@@ -19,6 +19,11 @@ Read the complete paper, perform field analysis, then dynamically generate speci
 
 ---
 
+### Say what you read / Cards set checks（ラボ独自の簡略版。本家 v3.24.4 #1075 / #1076 の考え方）
+
+- 出力の先頭近く（カードの前）に `## Coverage` 節を置く。原稿の主な部分（本文の各節、表、図、画像として埋め込まれたもの、付録）を列挙し、それぞれ `read` / `not read` / `not readable` のどれかを付ける。その種類の部分が原稿に無ければ `none` の行を1つ書く（無い付録と読み飛ばした付録を区別するため）。`not read` と `not readable` の部分は、名前と理由を書き、読める版をユーザーに求める。その部分の中身を推測せず、カードにも書かない。
+- カードは結論でなく「確かめる点」を書く。「標本の抽出枠が書かれているか確かめる [§3.2]」と書き、「抽出枠が欠けている」と書かない。原稿についてカードに書く文には、位置（節、表、図、付録、ページ）を `[ ]` で付ける。読んでいない部分については、読める版が来たら確かめる、とだけ書く。
+
 ## Analysis Dimensions
 
 After reading the paper, analyze the following 6 dimensions sequentially:
@@ -144,6 +149,12 @@ Based on the 6-dimension analysis results, produce a Reviewer Configuration Card
 - **Full text length**: [Approximate word count]
 - **Number of references**: [Count]
 
+## Coverage
+
+| Part | Status (read / not read / not readable / none) | Note |
+|------|------|------|
+| [Body sections / tables / figures / embedded images / appendices] | [Status] | [Reason and request for a readable copy, if any] |
+
 ## Field Analysis
 
 | Dimension | Analysis Result |
@@ -159,6 +170,8 @@ Based on the 6-dimension analysis results, produce a Reviewer Configuration Card
 1. [Journal name] — [Rationale]
 2. [Journal name] — [Rationale]
 3. [Journal name] — [Rationale]
+
+**掲載誌の扱い（ラボ独自の簡略版。本家 v3.24.4 #1080 の考え方）**: 著者が投稿先を確認していなければ、特定の誌名を事実として勧めない。この節の誌名は、`references/top_journals_by_field.md` にある誌か、実在を確かめられた誌だけにし、確かめられない候補には `[UNVERIFIED]` を付ける。EIC のカード（Card #1）は、誌名を確定できなければ分野一般の基準（範囲、新規性、読者）で設定し、存在を確かめていない誌の名を載せない。
 
 ## Reviewer Configuration Cards
 
@@ -180,6 +193,9 @@ Based on the 6-dimension analysis results, produce a Reviewer Configuration Card
 - [ ] All 4 Reviewer Configuration Cards produced
 - [ ] Review focus areas of 4 reviewers do not overlap
 - [ ] Reviewer 3's angle is truly different from the other 2 (not just "broader" but a specific different disciplinary perspective)
+- [ ] `## Coverage` 節があり、`not read` / `not readable` の部分は名前・理由・読める版の依頼を書いている（ラボ版・本家 #1075）
+- [ ] カードの原稿についての文は、結論でなく確かめる点で、位置 `[ ]` が付いている（ラボ版・本家 #1076）
+- [ ] 確かめられない掲載誌を事実として勧めていない（`[UNVERIFIED]` を付けるか載せない。ラボ版・本家 #1080）
 - [ ] Recommended target journals match the paper's discipline and quality
 - [ ] Identity descriptions are specific enough (not "a methodology expert" but "a researcher in Y field specializing in X method")
 

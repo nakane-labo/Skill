@@ -115,6 +115,7 @@ For every source in the bibliography, query the Semantic Scholar API:
 - Record `semantic_scholar_id` in the verification audit trail for each matched reference
 - References that PASS Tier 0 (matched with score >= 0.70) may skip Tier 2 WebSearch spot-check
 - References that FAIL Tier 0 (S2_NOT_FOUND) MUST proceed through Tier 1 + Tier 2
+- （ラボ独自の追記）Crossref / OpenAlex / arXiv の照会と、日本語文献の CiNii / J-STAGE / NDL サーチ、DOI の登録機関の確認、`true` / `false` / `unresolvable` の三値は `shared/references/citation_existence_gate.md` を使う。日本語文献を Crossref の結果だけで FABRICATED にしない。
 
 **DOI mismatch detection**: If a DOI resolves in S2 but the returned title has Levenshtein < 0.70 against the reference title, flag as `DOI_MISMATCH` — this is a known hallucination pattern (Compound Deception Pattern #5: DOI Misdirection).
 

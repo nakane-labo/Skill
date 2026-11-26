@@ -39,8 +39,7 @@ This file is the **single source of truth** for firm-rule wording that is otherw
 **Mirrored in (contamination rules):**
 
 - `academic-paper/agents/formatter_agent.md` — R-L3-2-A + R-L3-2-E (in the contamination pass-through paragraph).
-- `deep-research/references/crossref_api_protocol.md` — R-L3-2-A (user-discretion reference).
-- `deep-research/references/openalex_api_protocol.md` — R-L3-2-A reference.
+- `shared/references/citation_existence_gate.md` — R-L3-2-A (user-discretion reference; Crossref / OpenAlex の引き方をまとめた手順書。本家の Crossref / OpenAlex の個別 protocol はラボ版に含めず、この手順書に統合)。
 - `academic-pipeline/agents/pipeline_orchestrator_agent.md` — R-L3-2-C / R-L3-2-D / R-L3-2-E (finalizer logic).
 - `deep-research/agents/bibliography_agent.md` — R-L3-2-B (ingest-time computation).
 

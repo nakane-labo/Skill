@@ -27,6 +27,13 @@ ZIP 内の `SKILL.md` は**ルートに1つだけ**です（各サブフォル�
 
 **バンドル版**: v3.14.0 系（academic-paper **3.2.0**、`academic_writing_advice_ja` 含む）
 
-## ライセンス
+## 出典とライセンス
 
-[CC BY-NC 4.0](LICENSE)（上流 [academic-research-skills](https://github.com/Imbad0202/academic-research-skills) 由来部分に準拠）
+このスキルは、Cheng-I Wu 氏の [academic-research-skills](https://github.com/Imbad0202/academic-research-skills)（Imbad0202/academic-research-skills）をもとに、中根ラボが**改変**したものです。
+
+- 原著作者: Cheng-I Wu
+- ライセンス: [Creative Commons 表示-非営利 4.0 国際（CC BY-NC 4.0）](https://creativecommons.org/licenses/by-nc/4.0/deed.ja)。全文は [LICENSE](LICENSE)
+- 改変の内容: ルート `SKILL.md` の新設とサブスキルの `SUBSKILL.md` への改名、日本語の段落・流れの指針と社会学評論スタイルガイドの追加、参考文献形式の変更、日本語トリガーの追加、ファイル数の削減（本家の一部ファイルを除外）
+- 非営利の利用に限ります。営利目的での利用・配布はできません。
+
+本家との関係と改変の一覧は、リポジトリの `docs/academic-research-skills-nakanelabo/UPSTREAM.md` にあります。
